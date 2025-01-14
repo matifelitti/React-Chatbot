@@ -69,37 +69,39 @@ function App() {
   };
 
   return (
-    <div className="m-auto mt-8 w-80 h-96 col-auto justify-end shadow-lg border-solid border-2 border-teal-600/75">
-      <div className="p-1 text-center text-2xl text-teal-50 font-medium bg-teal-600/75">
+    <div className="m-auto mt-8 w-full max-w-sm h-[500px] col-auto flex flex-col justify-between shadow-lg border border-teal-600 rounded-lg bg-white">
+      <div className="p-2 text-center text-xl text-teal-50 font-bold bg-teal-600 rounded-t-lg">
         Chatbot
       </div>
-      <div className="h-60 overflow-y-auto">
+      <div className="h-80 overflow-y-auto px-4 py-2 message-scrollbar">
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`mt-4 mb-4 ml-5 pt-2 pl-2 w-60 rounded ${
-              msg.sender === "bot" ? "bg-teal-100/75" : "bg-teal-200/75"
+            className={`mt-2 mb-2 p-2 rounded-lg ${
+              msg.sender === "bot" ? "bg-teal-100 text-teal-900" : "bg-teal-200"
             }`}
           >
             {msg.text}
           </div>
         ))}
       </div>
-
       <form
         action="#"
-        className="flex items-center"
+        className="flex items-center px-4 py-3 bg-gray-50 rounded-b-lg"
         onSubmit={handleFormSubmit}
       >
         <input
           ref={inputRef}
           type="text"
-          placeholder="Message"
-          className="my-1 mb-2 ml-5 pt-2 pl-2 w-56 rounded border-2 border-[#0d9488] focus:outline-none"
+          placeholder="Type a message..."
+          className="flex-grow rounded-l-lg border border-teal-400 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
           required
         />
-        <button className="my-1 mb-2 ml-3 px-2 w-12 h-9 text-white bg-teal-600/75 rounded">
-          ^
+        <button
+          type="submit"
+          className="px-4 py-2 bg-teal-600 text-white font-bold rounded-r-lg hover:bg-teal-700 focus:outline-none"
+        >
+          Send
         </button>
       </form>
     </div>

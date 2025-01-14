@@ -6,3 +6,26 @@
 * {
   font-family: "Poppins", sans-serif;
 }
+
+.message-scrollbar {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.message-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #0d9488;
+  border-radius: 10px;
+}
+
+.message-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #0d7f6a;
+}
+
+.message-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}

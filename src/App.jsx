@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import "./index.css";
+import { FaRobot } from "react-icons/fa";
 
 function App() {
   const [messages, setMessages] = useState([
@@ -21,18 +22,13 @@ function App() {
       },
       method: "POST",
       body: JSON.stringify({
-        instances: [
-          {
-            content: message,
-          },
-        ],
-        parameters: {
-          temperature: 0.7,
-        },
+        prompt: message,
+        temperature: 0.7,
       }),
     };
 
     try {
+      console.log("Sending request to API:", apiUrl);
       const response = await fetch(apiUrl, request);
       const text = await response.text();
 
@@ -44,7 +40,7 @@ function App() {
       const data = JSON.parse(text);
       return data?.candidates?.[0]?.output || "No response from API";
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error while calling API:", error);
       return "Sorry, I couldn't process your request.";
     }
   };
@@ -77,11 +73,16 @@ function App() {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`mt-2 mb-2 p-2 rounded-lg ${
+            className={`mt-2 mb-2 p-2 rounded-lg flex items-center ${
               msg.sender === "bot" ? "bg-teal-100 text-teal-900" : "bg-teal-200"
             }`}
           >
-            {msg.text}
+            {msg.sender === "bot" && (
+              <div className="flex items-center px-2">
+                <FaRobot className="text-teal-600 text-2xl" />
+              </div>
+            )}
+            <div>{msg.text}</div>
           </div>
         ))}
       </div>
@@ -94,7 +95,7 @@ function App() {
           ref={inputRef}
           type="text"
           placeholder="Type a message..."
-          className="flex-grow rounded-l-lg border border-teal-400 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          className="flex-grow rounded-l-lg border border-teal-400 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 ml-2"
           required
         />
         <button

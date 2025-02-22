@@ -74,7 +74,9 @@ function App() {
           <div
             key={index}
             className={`mt-2 mb-2 p-2 rounded-lg flex items-center ${
-              msg.sender === "bot" ? "bg-teal-100 text-teal-900" : "bg-teal-200"
+              msg.sender === "bot"
+                ? "bg-teal-100 text-teal-900 mr-10"
+                : "bg-teal-200 ml-10"
             }`}
           >
             {msg.sender === "bot" && (

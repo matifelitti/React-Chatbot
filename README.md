@@ -30,7 +30,7 @@ Follow these steps to run the chatbot locally:
 1. **Clone the repository**
 
    ```sh
-   git clone https://github.com/your-username/chatbot-gemini.git
+   git clone https://github.com/matifelitti/chatbot-gemini.git
    cd chatbot-gemini
    ```
 
